@@ -1,38 +1,44 @@
-.App {
-  text-align: center;
+*{
+  text-decoration: none;
 }
+/* 네브바 */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar_wrap{
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.367);
+  margin:0px 20px;
+
+}
+
+.navbar_main{
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: 1.3rem;
+  text-align: center;
+  align-items: center;
+  color:black;  
+}
+.navbar_main p {
+ padding-top: 6px;
+ padding-right: 6px;
+
+}
+.navbar_ul{
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar_ul li {
+  padding:10px;
+  font-size: 1rem;
+  color:black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navbar_ul button{
+  background-color: transparent;
+  border:none;
+  font-size: 1rem;
+  cursor: pointer;
 }
