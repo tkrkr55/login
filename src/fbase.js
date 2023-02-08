@@ -1,8 +1,10 @@
 // initalizeApp 을통해 app 을 초기화 시켜 주었다.
-
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider,signOut,onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref, child, get } from "firebase/database";
+import { getDatabase, ref, set, get } from "firebase/database";
+import { v4 as uuid} from 'uuid';
+
+
 const firebaseConfig = {
   apiKey:process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain:process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -15,6 +17,7 @@ const provider = new GoogleAuthProvider();
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const database = getDatabase(app)
+
 
  export function login(){
  signInWithPopup(auth, provider).catch(console.error);
@@ -57,4 +60,25 @@ async function adminUSer(user){
     })
 
 
+}
+
+// 클라우디니에서 저장된 제품을 불러오는 함수를 만들것임
+// 비동기함수 임을 알려주는 async를 사용해준다.
+// 제품을 받아올 product 와 이미지 를 받아올 url인 imageUrl 파라미터를 작성한다
+// 파이어베이스에서 해당 함수를 호출하고 받아온 제품정보와 이미지를 파라미터로 보내준다.
+
+// **제품 등록하기
+//* 제품마다 고유의 id가 있으면 좋을듯 하다.
+// uuid를 설치한다. npm add uuid
+export async function addNewProduct(product,image){
+  const id = uuid();
+  set(ref(database,`products/${uuid()}`),{
+    ...product,
+    id,
+    // price는 문자열 형태의 숫자를 받아오기 때문에 parseInt 를사용해서 숫자로 받아온다.
+    price:parseInt(product.price),
+    image,
+    options:product.options.split(','),
+
+  })
 }

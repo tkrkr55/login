@@ -7,12 +7,15 @@ import NewProduct from './page/NewProduct';
 import ProductDetail from './page/ProductDetail';
 import { Outlet, Route,Routes, } from 'react-router-dom';
 import AllProducts from './page/AllProducts';
+import { AuthcontextProvider } from './component/context/AuthContext';
 
 function App() {
   return (
     <>
+    <AuthcontextProvider>
      <Navbar_main/> 
       <Outlet></Outlet>
+      </AuthcontextProvider>
     </>
   );
 }
